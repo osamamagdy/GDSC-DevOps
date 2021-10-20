@@ -2,22 +2,13 @@ const express = require('express');
 const redis = require('redis');
 const app = express();
 
-const client = redis.createClient({
-    host: 127.0.0.1 ,    //this is the name of the service in the docker-compose.yaml file
-                             // express will treat this as a url and will try to connect to it, when docker compose notices this --> it will redirect it to the container with the same name
-    port: 6379      // this is the default port that redis image will listen to 
-});
+const client = redis.createClient();
 
 client.set('visits', 0);
 
 
 app.get('/',(req,res)=>{
-    
-    
-    //This will be executed with every request to the node server 
-    
-    process.exit(0);  //This line is for trial, it makes the nodejs server crashes ( exits with code 0)
-
+    //This will be executed with every request to the node server
     client.get('visits', (err, visits)=>{
         res.send('Number of visits is ' + visits);
         client.set('visits', parseInt(visits)+1);
