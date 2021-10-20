@@ -19,11 +19,11 @@ app.set('view engine', 'ejs');
 
 
 
-var app_port = app.listen(process.env.PORT || 8080);
+var app_port = app.listen(process.env.PORT || 8000);
 
 
 app.listen(app_port,()=>{
-    console.log("Listening on port 8080");
+    console.log("Listening on port 8000");
 });
 
 
